@@ -75,13 +75,8 @@ class QuestionViewController: UIViewController {
         nextQuestion()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as! UINavigationController
-        for viewController in navigationController.viewControllers {
-            if let navigationVC = viewController as? UINavigationController{
-                let resultVC = navigationVC.presentedViewController as! ResultViewController
-                resultVC.answers = answerChosen
-            }
-        }
+        guard let resultVC = segue.destination as? ResultViewController else { return }
+        resultVC.answers = answerChosen
     }
     
 }
